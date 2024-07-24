@@ -1,4 +1,3 @@
-package com.example.myproject;
 import java.util.Formatter;
 
 /**

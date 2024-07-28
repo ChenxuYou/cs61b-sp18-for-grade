@@ -1,6 +1,6 @@
 public class NBody {
     private static final String backgroundToDraw = "./images/starfield.jpg";
-    // private static final int numOfPlanets = 5;
+    private static final int numOfPlanets = 5;
 
     public static void main(String[] args) {
         double T = Double.parseDouble(args[0]);
@@ -53,8 +53,8 @@ public class NBody {
         In in = new In(filename);
         int num = in.readInt();
         double radius = in.readDouble();
-
-        Planet[] planets = new Planet[planets.length];
+        
+        Planet[] planets = new Planet[numOfPlanets];
         for (int i = 0; i < planets.length; i++) {
             double xxPos = in.readDouble();
             double yyPos = in.readDouble();

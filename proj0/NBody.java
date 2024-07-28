@@ -55,7 +55,7 @@ public class NBody {
         double radius = in.readDouble();
 
         Planet[] planets = new Planet[planets.length];
-        for (int i = 0; i < numOfPlanets; i++) {
+        for (int i = 0; i < planets.length; i++) {
             double xxPos = in.readDouble();
             double yyPos = in.readDouble();
             double xxVel = in.readDouble();

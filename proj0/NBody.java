@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class NBody {
     private static final String backgroundToDraw = "./images/starfield.jpg";
 
@@ -54,6 +52,7 @@ public class NBody {
         In in = new In(filename);
         int num = in.readInt();
         double radius = in.readDouble();
+        
         Planet[] planets = new Planet[num];
         for (int i = 0; i < num; i++) {
             double xxPos = in.readDouble();

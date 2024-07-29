@@ -57,20 +57,28 @@ public class NBody {
         double radius = in.readDouble();
         
         ArrayList<Planet> planetList = new ArrayList<>();
-        String line = in.readLine().trim();
-        if (line.isEmpty() || !Character.isDigit(line.charAt(0))) {
-            break;
+        while (in.hasNextLine()) {
+            String line = in.readLine().trim();
+            if (line.isEmpty() || !Character.isDigit(line.charAt(0))) {
+                break;
+            }
+            String[] parts = line.split("\\s+");
+            try {
+                double xxPos = Double.parseDouble(parts[0]);
+                double yyPos = Double.parseDouble(parts[1]);
+                double xxVel = Double.parseDouble(parts[2]);
+                double yyVel = Double.parseDouble(parts[3]);
+                double mass = Double.parseDouble(parts[4]);
+                String imgFileName = parts[5];
+                planetList.add(new Planet(xxPos, yyPos, xxVel, yyVel, mass, imgFileName));
+            } catch (NumberFormatException e) {
+                // Skip lines that can't be parsed correctly
+                continue;
+            }
         }
-        for (int i = 0; i < planets.length; i++) {
-            double xxPos = in.readDouble();
-            double yyPos = in.readDouble();
-            double xxVel = in.readDouble();
-            double yyVel = in.readDouble();
-            double mass = in.readDouble();
-            String imgFileName = in.readString();
-            planetsList.add(new Planet(xxPos, yyPos, xxVel, yyVel, mass, imgFileName));
-        }
-        return planetList.toArray(new Planet[0]);
+        Planet[] planets = planetList.toArray(new Planet[0]);
+        System.out.println(planets);
+        return planets;
     }
 
     private static void drawBackground(double radius) {

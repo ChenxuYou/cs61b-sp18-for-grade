@@ -1,6 +1,8 @@
+import java.util.ArrayList;
+
 public class NBody {
     private static final String backgroundToDraw = "./images/starfield.jpg";
-    private static final int numOfPlanets = 5;
+    // private static final int numOfPlanets = 5;
 
     public static void main(String[] args) {
         double T = Double.parseDouble(args[0]);
@@ -54,7 +56,11 @@ public class NBody {
         int num = in.readInt();
         double radius = in.readDouble();
         
-        Planet[] planets = new Planet[numOfPlanets];
+        ArrayList<Planet> planetList = new ArrayList<>();
+        String line = in.readLine().trim();
+        if (line.isEmpty() || !Character.isDigit(line.charAt(0))) {
+            break;
+        }
         for (int i = 0; i < planets.length; i++) {
             double xxPos = in.readDouble();
             double yyPos = in.readDouble();
@@ -62,9 +68,9 @@ public class NBody {
             double yyVel = in.readDouble();
             double mass = in.readDouble();
             String imgFileName = in.readString();
-            planets[i] = new Planet(xxPos, yyPos, xxVel, yyVel, mass, imgFileName);
+            planetsList.add(new Planet(xxPos, yyPos, xxVel, yyVel, mass, imgFileName));
         }
-        return planets;
+        return planetList.toArray(new Planet[0]);
     }
 
     private static void drawBackground(double radius) {

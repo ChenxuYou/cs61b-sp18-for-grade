@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class NBody {
     private static final String backgroundToDraw = "./images/starfield.jpg";
-    // private static final int numOfPlanets = 5;
 
     public static void main(String[] args) {
         double T = Double.parseDouble(args[0]);
@@ -55,29 +54,17 @@ public class NBody {
         In in = new In(filename);
         int num = in.readInt();
         double radius = in.readDouble();
-        
-        ArrayList<Planet> planetList = new ArrayList<>();
-        while (in.hasNextLine()) {
-            String line = in.readLine().trim();
-            if (line.isEmpty() || !Character.isDigit(line.charAt(0))) {
-                break;
-            }
-            String[] parts = line.split("\\s+");
-            try {
-                double xxPos = Double.parseDouble(parts[0]);
-                double yyPos = Double.parseDouble(parts[1]);
-                double xxVel = Double.parseDouble(parts[2]);
-                double yyVel = Double.parseDouble(parts[3]);
-                double mass = Double.parseDouble(parts[4]);
-                String imgFileName = parts[5];
-                planetList.add(new Planet(xxPos, yyPos, xxVel, yyVel, mass, imgFileName));
-            } catch (NumberFormatException e) {
-                // Skip lines that can't be parsed correctly
-                continue;
-            }
+        Planet[] planets = new Planet[num];
+        for (int i = 0; i < num; i++) {
+            double xxPos = in.readDouble();
+            double yyPos = in.readDouble();
+            double xxVel = in.readDouble();
+            double yyVel = in.readDouble();
+            double mass = in.readDouble();
+            String imgFileName = in.readString();
+
+            planets[i] = new Planet(xxPos, yyPos, xxVel, yyVel, mass, imgFileName);
         }
-        Planet[] planets = planetList.toArray(new Planet[0]);
-        System.out.println(planets);
         return planets;
     }
 
